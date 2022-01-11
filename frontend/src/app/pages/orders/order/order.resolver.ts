@@ -6,9 +6,9 @@
 
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/delay';
+import { Observable } from 'rxjs';
+//import 'rxjs/add/observable/of';
+//import 'rxjs/add/operator/delay';
 import { forkJoin, of } from 'rxjs';
 import { OrderTypeData } from '../../../@core/interfaces/ecommerce/order-type';
 import { OrderStatusData } from '../../../@core/interfaces/ecommerce/order-status';

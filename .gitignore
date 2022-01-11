@@ -109,3 +109,4 @@ INSTRUCTION.*
 backend/config/default.js
 backend/config/production.js
 **/.DS_Store
+.angular/

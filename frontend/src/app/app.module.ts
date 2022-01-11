@@ -13,6 +13,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ThemeModule } from './@theme/theme.module';
 import { AuthModule } from './@auth/auth.module';
+import { NgxEchartsModule } from 'ngx-echarts';
+
 
 import {
   NbChatModule,
@@ -31,7 +33,9 @@ import {
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    }),
     AuthModule.forRoot(),
 
     NbSidebarModule.forRoot(),

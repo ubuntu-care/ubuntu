@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 
 export const socialLinks = [
   {
-    url: 'https://github.com/akveo/nebular',
+    url: 'https://github.com/ubuntu-care/ubuntu',
     target: '_blank',
     icon: 'github',
   },

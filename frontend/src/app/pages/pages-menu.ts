@@ -18,8 +18,8 @@ export class PagesMenu {
   getMenu(): Observable<NbMenuItem[]> {
     const dashboardMenu: NbMenuItem[] = [
       {
-        title: 'E-commerce',
-        icon: 'shopping-cart-outline',
+        title: 'Dashboard',
+        icon: 'pie-chart-outline',
         link: '/pages/dashboard',
         home: true,
         children: undefined,
@@ -28,7 +28,7 @@ export class PagesMenu {
 
     const ordersMenu: NbMenuItem[] = [
       {
-        title: 'Orders',
+        title: 'Requests',
         icon: 'car-outline',
         link: '/pages/orders/list',
         children: undefined,

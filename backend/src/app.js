@@ -31,6 +31,7 @@ const orderStatusesController = require('./api/ecom/orderStatuses/orderStatusesC
 const countriesController = require('./api/ecom/countries/countriesController');
 const trafficAggregatedController = require('./api/ecom/trafficAggregated/trafficAggregatedController');
 const userActivityController = require('./api/ecom/userActivities/userActivityController');
+const messageController = require('./api/ecom/messages/messageController');
 
 const SeedService = require('./api/seedService');
 const seedService = new SeedService();
@@ -100,6 +101,7 @@ app.use(`${root}/order-statuses`, auth, orderStatusesController);
 app.use(`${root}/countries`, auth, countriesController);
 app.use(`${root}/traffic-aggregated`, auth, trafficAggregatedController);
 app.use(`${root}/user-activity`, auth, userActivityController);
+app.use(`${root}/sms`, auth, messageController);
 
 app.use(logErrors);
 app.use(clientErrorHandler);

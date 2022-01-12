@@ -35,6 +35,15 @@ export class PagesMenu {
       },
     ];
 
+    const messagesMenu: NbMenuItem[] = [
+      {
+        title: 'Messages',
+        icon: 'email-outline',
+        link: '/pages/sms',
+        children: undefined,
+      },
+    ];
+
     const menu: NbMenuItem[] = [
       {
         title: 'FEATURES',

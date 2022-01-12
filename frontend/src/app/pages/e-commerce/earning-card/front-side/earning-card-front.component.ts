@@ -18,10 +18,10 @@ import { LiveUpdateChart, EarningData } from '../../../../@core/interfaces/ecomm
 export class EarningCardFrontComponent implements OnDestroy, OnInit {
   private alive = true;
 
-  @Input() selectedCurrency: string = 'Bitcoin';
+  @Input() selectedCurrency: string = 'Seniors';
 
   intervalSubscription: Subscription;
-  currencies: string[] = ['Bitcoin', 'Tether', 'Ethereum'];
+  currencies: string[] = ['Seniors', 'Mental Health', 'Emergencies'];
   currentTheme: string;
   earningLiveUpdateCardData: LiveUpdateChart;
   liveUpdateChartData: { value: [string, number] }[];

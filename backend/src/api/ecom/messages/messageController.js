@@ -6,8 +6,9 @@ const router = express.Router();
 const messageService = new MessageService();
 
 router.get('/', (req, res) => {
-  const body = req.body; //req.query if from Twilio
-  res.send(messageService.validateIncomingMessag(body, ['from', 'messages']))
+  const { body } = req; // req.query if from Twilio
+  const mess = messageService.validateIncomingMessag(body, ['from', 'messages']);
+  res.send(mess);
 });
 
 module.exports = router;

@@ -1,10 +1,13 @@
 const camelCase = require('camelcase-keys');
+/* Create server */
 const logger = require('../../../utils/logger');
+
 
 class MessageService {
   constructor() {
-    //test message
-    this.messages = {
+    // test messages
+    this.messages = [{
+      id: 1,
 
       ToCountry: 'US',
       ToState: 'MI',
@@ -24,25 +27,35 @@ class MessageService {
       MessageSid: 'SMfcd7c4707fe321094db57bb127cf48e5',
       AccountSid: 'ACa63d326f5a1632c3069a5b57774eb791',
       From: '+64212176188',
-      ApiVersion: '2010-04-01'
+      ApiVersion: '2010-04-01',
 
-    };
+    },
+    {
+      id: 2,
+      SmsStatus: 'new',
+      FromCity: 'Mumbai',
+      Body: 'Please see a doctor ',
+    },
+    {
+      id: 3,
+      SmsStatus: 'new',
+      FromCity: 'Mumbai',
+      Body: 'Please see a doctor ',
+    }];
   }
 
-  validateIncomingMessag(message, requiredFields = ['from', 'body', 'messageSid', 'smsStatus']){
+  fetchNewMessages() {
+    return this.messages.filter(message => message.SmsStatus === 'new');
+  }
+
+  validateIncomingMessag(message, requiredFields = ['from', 'body', 'messageSid', 'smsStatus']) {
     requiredFields.every(field => {
       if (!message[field]) {
         logger.warn(`Message missing required field "${field}": ${JSON.stringify(message)}`);
       }
     });
     return camelCase(message);
-
-  };
-
-  processIncomingMessage() {
-    //console.log('message ready', message)
-    return this.validateIncomingMessag(message)
   }
-};
+}
 
 module.exports = MessageService;

@@ -5,17 +5,25 @@
  */
 import { Component, OnInit } from '@angular/core';
 import { AnalyticsService } from './@core/utils';
+import { SocketService } from './services/socket.service';
 
 @Component({
   selector: 'ngx-app',
-  template: '<router-outlet></router-outlet>',
+  template: `<nb-layout>
+  <nb-layout-column>
+      <router-outlet></router-outlet>
+   </nb-layout-column>
+ </nb-layout>`,
 })
 export class AppComponent implements OnInit {
 
-  constructor(private analytics: AnalyticsService) {
+  constructor(private analytics: AnalyticsService, private socketService: SocketService) {
   }
-
+message:any;
   ngOnInit(): void {
     this.analytics.trackPageViews();
+    this.socketService.fetchMessage();
+    this.socketService.OnFetchMessage();
   }
+
 }

@@ -9,8 +9,11 @@ const cors = require('cors');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const config = require('config');
+const http = require('http');
+
 const swaggerUi = require('swagger-ui-express');
 
+const { Server } = require('socket.io');
 const swaggerDocument = require('./swagger.json');
 const logger = require('./utils/logger');
 
@@ -34,9 +37,16 @@ const userActivityController = require('./api/ecom/userActivities/userActivityCo
 const messageController = require('./api/ecom/messages/messageController');
 
 const SeedService = require('./api/seedService');
+const MessageService = require('./api/ecom/messages/messageService');
+
 const seedService = new SeedService();
+const messageService = new MessageService();
 
 const app = express();
+
+const server = http.createServer(app);
+const io = new Server(server);
+
 const { port, root } = config.get('api');
 
 function logErrors(err, req, res, next) {
@@ -106,10 +116,26 @@ app.use(`${root}/sms`, auth, messageController);
 app.use(logErrors);
 app.use(clientErrorHandler);
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
+io.on('connection', (socket) => {
+  logger.info('client connected');
+
+  socket.on('fetch message', (msg) => {
+    const messages = messageService.fetchNewMessages();
+    if (messages) {
+      logger.info('some messages at first contact', msg);
+      io.emit('new message', 'sent on connection');
+    }
+  });
+
+  socket.on('message read', (msg) => {
+    logger.info('message read...', msg);
+
+    // update message
+  });
 });
 
-app.listen(port);
+server.listen(port);
 
 logger.info(`Server start listening port: ${port}`);
+
+module.exports = io;

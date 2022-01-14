@@ -1,3 +1,5 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable max-len */
 /*
  * Copyright (c) Ubuntu Care 2022. All Rights Reserved.
  * Licensed under the Single Application / Multi Application License.
@@ -22,7 +24,7 @@ const trafficService = new TrafficService();
 
 class SeedService {
   checkAndSeed() {
-    logger.info('Seed Data')
+    logger.info('Seed Data');
     orderService.getCount()
       .then(count => {
         if (!count) {
@@ -38,7 +40,9 @@ class SeedService {
       await this.addCustomUsers();
       await this.addRandomUsers(this.getNames());
       logger.info('Seed Users Done');
-      const users = await userService.list({ sortBy: 'name', orderBy: 'ASC', pageSize: 20, pageNumber: 1 });
+      const users = await userService.list({
+        sortBy: 'name', orderBy: 'ASC', pageSize: 20, pageNumber: 1,
+      });
       await this.addRandomUserActivities(users.items);
       logger.info('Seed User Activities Done');
       const types = await orderService.listOrderTypes();
@@ -46,7 +50,7 @@ class SeedService {
       await this.addRandomOrders(types, statuses);
       logger.info('Seed Orders Done');
       await this.addRandomTraffic();
-      logger.info('Seed Traffic Done')
+      logger.info('Seed Traffic Done');
     } catch (err) {
       logger.error(err);
     }
@@ -55,7 +59,7 @@ class SeedService {
   addCustomUsers() {
     // add 2 custom users
     const usersToAdd = [];
-    let hash = cipher.saltHashPassword('!2e4S');
+    let hash = cipher.saltHashPassword('pass');
     const admin = {
       firstName: 'Admin',
       lastName: 'Admin',
@@ -68,7 +72,7 @@ class SeedService {
     };
     usersToAdd.push(admin);
 
-    hash = cipher.saltHashPassword('12345');
+    hash = cipher.saltHashPassword('pass');
     const user = {
       firstName: 'User',
       lastName: 'User',

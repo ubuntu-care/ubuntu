@@ -116,7 +116,7 @@ app.use(`${root}/sms`, auth, messageController);
 app.use(logErrors);
 app.use(clientErrorHandler);
 
-app.get('api/sms', (req, res) => { // instant message
+app.get('/sms', (req, res) => { // instant message
   logger.info(req.method, req.url);
   const { body } = req; // req.query if from Twilio
   const message = messageService.validateIncomingMessag(body, ['from', 'message']);

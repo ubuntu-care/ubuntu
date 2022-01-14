@@ -37,8 +37,7 @@ router.get('/send/:receiver', (req, res) => { // sending to number
     .then(message => res.send(message.sid)).catch(error => logger.error(error));
 });
 
-router.get('/inbox', (req, res, next) => {
-  logger.info(req.method, req.url);
+function inbox(res, req) {
   client.messages.list({ to: phone }).then((messages) => {
     logger.info('messges..', messages);
     // messages = messages.reduce((accumulator, currentMessage) => {
@@ -51,9 +50,9 @@ router.get('/inbox', (req, res, next) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify(messages));
   }).catch(error => logger.error(error));
-});
+}
 
-router.get('/outbox', (req, res, next) => {
+function outbox(req, res) {
   client.messages.list({ from: phone }).then((messages) => {
     messages = messages.reduce((accumulator, currentMessage) => {
       if (!accumulator[currentMessage.to]) {
@@ -65,6 +64,15 @@ router.get('/outbox', (req, res, next) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify(messages));
   });
+}
+
+router.get('/inbox', (req, res, next) => {
+  logger.info(req.method, req.url);
+  inbox();
+});
+
+router.get('/outbox', (req, res, next) => {
+  outbox(req, res);
 });
 
 router.post('/messages', (req, res, next) => {

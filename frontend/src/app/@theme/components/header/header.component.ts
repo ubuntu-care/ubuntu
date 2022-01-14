@@ -45,6 +45,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ];
 
   currentTheme = 'default';
+  
 
   userMenu = this.getMenuItems();
 

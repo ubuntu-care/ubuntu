@@ -55,7 +55,7 @@ export class TreeGridComponent {
 
   private data: TreeNode<FSEntry>[] = [
     {
-      data: { name: 'Projects', size: 1800000, items: 4, kind: 'dir' },
+      data: { name: 'Senior Citizens', size: 1800000, items: 4, kind: 'dir' },
       children: [
         { data: { name: 'project-1.doc', kind: 'doc', size: 240000 } },
         { data: { name: 'project-2.doc', kind: 'doc', size: 290000 } },
@@ -64,14 +64,14 @@ export class TreeGridComponent {
       ],
     },
     {
-      data: { name: 'Reports', kind: 'dir', size: 400000, items: 2 },
+      data: { name: 'Mental Health', kind: 'dir', size: 400000, items: 2 },
       children: [
         { data: { name: 'Report 1', kind: 'doc', size: 100000 } },
         { data: { name: 'Report 2', kind: 'doc', size: 300000 } },
       ],
     },
     {
-      data: { name: 'Other', kind: 'dir', size: 109000000, items: 2 },
+      data: { name: 'Emergencies', kind: 'dir', size: 109000000, items: 2 },
       children: [
         { data: { name: 'backup.bkp', kind: 'bkp', size: 107000000 } },
         { data: { name: 'secret-note.txt', kind: 'txt', size: 2000000 } },

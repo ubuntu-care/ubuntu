@@ -42,7 +42,6 @@ export class SocketService {
     this.socket.on('new message', (msg) => {
       console.log('some messages', msg)
       this.makeToast(msg);
-
     })
   };
 

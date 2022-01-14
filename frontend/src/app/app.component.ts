@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
 
   constructor(private analytics: AnalyticsService, private socketService: SocketService) {
   }
-message:any;
+  
   ngOnInit(): void {
     this.analytics.trackPageViews();
     this.socketService.fetchMessage();

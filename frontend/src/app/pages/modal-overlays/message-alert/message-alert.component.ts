@@ -18,8 +18,8 @@ export class MessageAlertComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
-		this.socketService.fetchMessage();
-		this.socketService.OnFetchMessage().subscribe((data: any) => this.message = data);
+		// this.socketService.fetchMessage();
+		// this.socketService.OnFetchMessage().subscribe((data: any) => this.message = data);
     //alert(message)
 	}
 

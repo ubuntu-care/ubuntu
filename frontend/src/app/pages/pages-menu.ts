@@ -16,17 +16,28 @@ export class PagesMenu {
   constructor(private accessChecker: NbAccessChecker) {}
 
   getMenu(): Observable<NbMenuItem[]> {
-    const dashboardMenu: NbMenuItem[] = [
+    const adminMenu: NbMenuItem[] = [
       {
-        title: 'Dashboard',
-        icon: 'pie-chart-outline',
-        link: '/pages/dashboard',
-        home: true,
+        title: 'ADMIN MENU',
+        group: true,
+      }, // TODO: hiding dashboard - not needed atm
+      // {
+      //   title: 'Dashboard',
+      //   icon: 'pie-chart-outline',
+      //   link: '/pages/dashboard',
+      //   home: true,
+      //   children: undefined,
+      // },
+      {
+        title: 'Users',
+        icon: 'people-outline',
+        link: '/pages/users/list',
         children: undefined,
-      },
+      }
+
     ];
 
-    const ordersMenu: NbMenuItem[] = [
+    const requestsMenu: NbMenuItem[] = [
       {
         title: 'Requests',
         icon: 'car-outline',
@@ -39,38 +50,44 @@ export class PagesMenu {
       {
         title: 'Messages',
         icon: 'email-outline',
-        link: '/pages/sms',
+        link: '/pages/layout/infinite-list',
         children: undefined,
       },
     ];
 
     const menu: NbMenuItem[] = [
       {
-        title: 'FEATURES',
+        title: 'NON-ADMIN MENU',
         group: true,
       },
       {
-        title: 'Layout',
+        title: 'Messages',
+        icon: 'email-outline',
+        link: '/pages/layout/infinite-list',
+        children: undefined,
+      },
+      {
+        title: 'Instructions',
         icon: 'layout-outline',
         children: [
           {
-            title: 'Stepper',
+            title: 'Steps',
             link: '/pages/layout/stepper',
           },
           {
-            title: 'List',
+            title: 'List of actions',
             link: '/pages/layout/list',
           },
           {
-            title: 'Infinite List',
+            title: 'Documentation',
             link: '/pages/layout/infinite-list',
           },
           {
-            title: 'Accordion',
+            title: 'Summaries',
             link: '/pages/layout/accordion',
           },
           {
-            title: 'Tabs',
+            title: 'Troubleshooting',
             pathMatch: 'prefix',
             link: '/pages/layout/tabs',
           },
@@ -93,104 +110,49 @@ export class PagesMenu {
             link: '/pages/forms/buttons',
           },
           {
-            title: 'Datepicker',
+            title: 'Calendar',
             link: '/pages/forms/datepicker',
           },
         ],
       },
       {
-        title: 'UI Features',
+        title: 'Facilities',
         icon: 'keypad-outline',
         link: '/pages/ui-features',
         children: [
           {
-            title: 'Grid',
+            title: 'Clinics',
             link: '/pages/ui-features/grid',
           },
           {
-            title: 'Icons',
+            title: 'Hospitals',
             link: '/pages/ui-features/icons',
           },
           {
-            title: 'Typography',
+            title: 'Dentistries',
             link: '/pages/ui-features/typography',
           },
           {
-            title: 'Animated Searches',
+            title: 'Pharmacies',
             link: '/pages/ui-features/search-fields',
           },
         ],
       },
-      {
-        title: 'Modal & Overlays',
-        icon: 'browser-outline',
-        children: [
-          {
-            title: 'Dialog',
-            link: '/pages/modal-overlays/dialog',
-          },
-          {
-            title: 'Window',
-            link: '/pages/modal-overlays/window',
-          },
-          {
-            title: 'Popover',
-            link: '/pages/modal-overlays/popover',
-          },
-          {
-            title: 'Toastr',
-            link: '/pages/modal-overlays/toastr',
-          },
-          {
-            title: 'Tooltip',
-            link: '/pages/modal-overlays/tooltip',
-          },
-        ],
-      },
-      {
-        title: 'Extra Components',
-        icon: 'message-circle-outline',
-        children: [
-          {
-            title: 'Calendar',
-            link: '/pages/extra-components/calendar',
-          },
-          {
-            title: 'Progress Bar',
-            link: '/pages/extra-components/progress-bar',
-          },
-          {
-            title: 'Spinner',
-            link: '/pages/extra-components/spinner',
-          },
-          {
-            title: 'Alert',
-            link: '/pages/extra-components/alert',
-          },
-          {
-            title: 'Calendar Kit',
-            link: '/pages/extra-components/calendar-kit',
-          },
-          {
-            title: 'Chat',
-            link: '/pages/extra-components/chat',
-          },
-        ],
-      },
+
       {
         title: 'Maps',
         icon: 'map-outline',
         children: [
           {
-            title: 'Google Maps',
+            title: 'Clinics',
             link: '/pages/maps/gmaps',
           },
           {
-            title: 'Leaflet Maps',
+            title: 'Ambulances',
             link: '/pages/maps/leaflet',
           },
           {
-            title: 'Bubble Maps',
+            title: 'Pharmacies',
             link: '/pages/maps/bubble',
           },
           {
@@ -199,84 +161,21 @@ export class PagesMenu {
           },
         ],
       },
+
       {
-        title: 'Charts',
-        icon: 'pie-chart-outline',
-        children: [
-          {
-            title: 'Echarts',
-            link: '/pages/charts/echarts',
-          },
-          {
-            title: 'Charts.js',
-            link: '/pages/charts/chartjs',
-          },
-          {
-            title: 'D3',
-            link: '/pages/charts/d3',
-          },
-        ],
-      },
-      {
-        title: 'Editors',
-        icon: 'text-outline',
-        children: [
-          {
-            title: 'TinyMCE',
-            link: '/pages/editors/tinymce',
-          },
-          {
-            title: 'CKEditor',
-            link: '/pages/editors/ckeditor',
-          },
-        ],
-      },
-      {
-        title: 'Tables & Data',
+        title: 'People & Projects',
         icon: 'grid-outline',
         children: [
           {
-            title: 'Smart Table',
+            title: 'People',
             link: '/pages/tables/smart-table',
           },
           {
-            title: 'Tree Grid',
+            title: 'Projects',
             link: '/pages/tables/tree-grid',
           },
         ],
-      },
-      {
-        title: 'Miscellaneous',
-        icon: 'shuffle-2-outline',
-        children: [
-          {
-            title: '404',
-            link: '/pages/miscellaneous/404',
-          },
-        ],
-      },
-      {
-        title: 'Auth',
-        icon: 'lock-outline',
-        children: [
-          {
-            title: 'Login',
-            link: '/auth/login',
-          },
-          {
-            title: 'Register',
-            link: '/auth/register',
-          },
-          {
-            title: 'Request Password',
-            link: '/auth/request-password',
-          },
-          {
-            title: 'Reset Password',
-            link: '/auth/reset-password',
-          },
-        ],
-      },
+      }
     ];
     const userMenu: NbMenuItem = {
       title: 'Users',
@@ -287,9 +186,9 @@ export class PagesMenu {
     return this.accessChecker.isGranted('view', 'users')
       .pipe(map(hasAccess => {
         if (hasAccess) {
-          return [...dashboardMenu, ...ordersMenu, userMenu, ...menu];
+          return [...adminMenu, ...menu];
         } else {
-          return [...dashboardMenu, ...ordersMenu, ...menu];
+          return [...menu];
         }
       }));
   }

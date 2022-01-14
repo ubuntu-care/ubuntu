@@ -29,7 +29,7 @@ const logger = winston.createLogger({
       json: true,
       maxsize: fileLogger.maxsize,
       maxFiles: fileLogger.maxFiles,
-      colorize: false,
+      colorize: true,
       timestamp: () => (new Date()).toLocaleString('en-US', { hour12: false }),
     }),
     new winston.transports.Console({

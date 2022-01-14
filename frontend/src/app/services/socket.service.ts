@@ -6,9 +6,10 @@ import {
   NbComponentStatus,
   NbGlobalPhysicalPosition,
   NbGlobalPosition,
+  NbToastRef,
   NbToastrService,
 } from '@nebular/theme';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { TheadTitlesRowComponent } from 'ng2-smart-table/lib/components/thead/rows/thead-titles-row.component';
 
 @Injectable({
@@ -38,15 +39,16 @@ export class SocketService {
 
   // listen event
   OnFetchMessage() {
-    this.socket.on('new message', () => {
-      console.log('some messages')
-      this.makeToast();
+    this.socket.on('new message', (msg) => {
+      console.log('some messages', msg)
+      this.makeToast(msg);
+
     })
   };
 
 
-  makeToast() {
-    this.showToast(this.status, this.title, 'You have a new message coming in!');
+  makeToast(message) {
+    this.showToast(this.status, this.title, 'You have a new message from ' + message.from);
   }
 
   private showToast(type: NbComponentStatus, title: string, body: string) {
@@ -62,9 +64,9 @@ export class SocketService {
     const titleContent = title ? `. ${title}` : '';
 
     this.index += 1;
-    this.toastrService.show(
+   this.toastrService.show(
       body,
       `Toast ${this.index}${titleContent}`,
-      config);
+      config)
   }
 }

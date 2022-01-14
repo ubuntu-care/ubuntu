@@ -116,23 +116,32 @@ app.use(`${root}/sms`, auth, messageController);
 app.use(logErrors);
 app.use(clientErrorHandler);
 
-io.on('connection', (socket) => {
-  logger.info('client connected');
+app.get('api/sms', (req, res) => { // instant message
+  logger.info(req.method, req.url);
+  const { body } = req; // req.query if from Twilio
+  const message = messageService.validateIncomingMessag(body, ['from', 'message']);
+  io.emit('new message', message);
 
-  socket.on('fetch message', (msg) => {
-    const messages = messageService.fetchNewMessages();
-    if (messages) {
-      logger.info('some messages at first contact', msg);
-      io.emit('new message', 'sent on connection');
-    }
-  });
-
-  socket.on('message read', (msg) => {
-    logger.info('message read...', msg);
-
-    // update message
-  });
+  res.send(message);
 });
+
+// io.on('connection', (socket) => {
+//   logger.info('client connected');
+
+//   socket.on('fetch message', (msg) => {
+//     const messages = messageService.fetchNewMessages();
+//     if (messages) {
+//       logger.info('some messages at first contact', msg);
+//       io.emit('new message', 'sent on connection');
+//     }
+//   });
+
+//   socket.on('message read', (msg) => {
+//     logger.info('message read...', msg);
+
+//     // update message
+//   });
+// });
 
 server.listen(port);
 

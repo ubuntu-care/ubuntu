@@ -16,10 +16,10 @@ class UserActivityRepository extends BaseRepository {
       .then(db => db
         .collection(this.collection)
         .aggregate([
-          { $match : { date : { $gte : startDate } } },
-          { $project : { group : { $year : '$date' } } },
-          { $group : { _id : { group : '$group' }, count : { $sum : 1 } } },
-          { $sort: { '_id.group' : 1 } },
+          { $match: { date: { $gte: startDate } } },
+          { $project: { group: { $year: '$date' } } },
+          { $group: { _id: { group: '$group' }, count: { $sum: 1 } } },
+          { $sort: { '_id.group': 1 } },
         ])
         .toArray());
   }
@@ -29,10 +29,10 @@ class UserActivityRepository extends BaseRepository {
       .then(db => db
         .collection(this.collection)
         .aggregate([
-          { $match : { date : { $gte : startDate } } },
-          { $project : { group : { $dayOfMonth : '$date' } } },
-          { $group : { _id : { group : '$group' }, count : { $sum : 1 } } },
-          { $sort: { '_id.group' : 1 } },
+          { $match: { date: { $gte: startDate } } },
+          { $project: { group: { $dayOfMonth: '$date' } } },
+          { $group: { _id: { group: '$group' }, count: { $sum: 1 } } },
+          { $sort: { '_id.group': 1 } },
         ])
         .toArray());
   }
@@ -42,10 +42,10 @@ class UserActivityRepository extends BaseRepository {
       .then(db => db
         .collection(this.collection)
         .aggregate([
-          { $match : { date : { $gte : startDate } } },
-          { $project : { group : { $dayOfWeek : '$date' } } },
-          { $group : { _id : { group : '$group' }, count : { $sum : 1 } } },
-          { $sort: { '_id.group' : 1 } },
+          { $match: { date: { $gte: startDate } } },
+          { $project: { group: { $dayOfWeek: '$date' } } },
+          { $group: { _id: { group: '$group' }, count: { $sum: 1 } } },
+          { $sort: { '_id.group': 1 } },
         ])
         .toArray());
   }

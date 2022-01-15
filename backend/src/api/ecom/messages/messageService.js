@@ -2,7 +2,6 @@ const camelCase = require('camelcase-keys');
 /* Create server */
 const logger = require('../../../utils/logger');
 
-
 class MessageService {
   constructor() {
     // test messages

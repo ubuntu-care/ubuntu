@@ -5,7 +5,7 @@
  */
 
 const config = require('config');
-const logger = require('../utils/logger');
+const logger = require('./logger');
 
 const { domain } = config.get('frontEnd');
 

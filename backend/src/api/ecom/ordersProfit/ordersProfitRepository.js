@@ -17,10 +17,10 @@ class OrdersProfitRepository {
       .then(db => db
         .collection(this.collection)
         .aggregate([
-          { $match : { date : { $gte : startDate, $lte : endDate  } } },
-          { $project : { month : { $month : '$date' }, status: '$status', value: '$value' } },
-          { $group : { _id : { status : '$status', month : '$month' }, sum : { $sum : '$value' } } },
-          { $sort: { '_id.status': 1, '_id.month' : 1 } },
+          { $match: { date: { $gte: startDate, $lte: endDate } } },
+          { $project: { month: { $month: '$date' }, status: '$status', value: '$value' } },
+          { $group: { _id: { status: '$status', month: '$month' }, sum: { $sum: '$value' } } },
+          { $sort: { '_id.status': 1, '_id.month': 1 } },
         ])
         .toArray());
   }
@@ -50,9 +50,9 @@ class OrdersProfitRepository {
       .then(db => db
         .collection(this.collection)
         .aggregate([
-          { $match : { date : { $gte : startDate, $lte : endDate } } },
-          { $project : { value : '$value' } },
-          { $group : { _id : null, sum : { $sum : '$value' } } },
+          { $match: { date: { $gte: startDate, $lte: endDate } } },
+          { $project: { value: '$value' } },
+          { $group: { _id: null, sum: { $sum: '$value' } } },
         ])
         .next());
   }
@@ -62,10 +62,10 @@ class OrdersProfitRepository {
       .then(db => db
         .collection(this.collection)
         .aggregate([
-          { $match : { date : { $gte : startDate } } },
-          { $project : { year : { $year : '$date' }, status: '$status', value: '$value' } },
-          { $group : { _id : { status : '$status', year : '$year' }, sum : { $sum : '$value' } } },
-          { $sort: { '_id.status': 1, '_id.year' : 1 } },
+          { $match: { date: { $gte: startDate } } },
+          { $project: { year: { $year: '$date' }, status: '$status', value: '$value' } },
+          { $group: { _id: { status: '$status', year: '$year' }, sum: { $sum: '$value' } } },
+          { $sort: { '_id.status': 1, '_id.year': 1 } },
         ])
         .toArray());
   }
@@ -75,10 +75,10 @@ class OrdersProfitRepository {
       .then(db => db
         .collection(this.collection)
         .aggregate([
-          { $match : { date : { $gte : startDate } } },
-          { $project : { year : { $year : '$date' }, value: '$value', status: 'All' } },
-          { $group : { _id : { status : '$status', year : '$year' }, sum : { $sum : '$value' } } },
-          { $sort: { '_id.year' : 1 } },
+          { $match: { date: { $gte: startDate } } },
+          { $project: { year: { $year: '$date' }, value: '$value', status: 'All' } },
+          { $group: { _id: { status: '$status', year: '$year' }, sum: { $sum: '$value' } } },
+          { $sort: { '_id.year': 1 } },
         ])
         .toArray());
   }
@@ -88,10 +88,10 @@ class OrdersProfitRepository {
       .then(db => db
         .collection(this.collection)
         .aggregate([
-          { $match : { date : { $gte : startDate } } },
-          { $project : { month : { $month : '$date' }, status: '$status', value: '$value' } },
-          { $group : { _id : { status : '$status', month : '$month' }, sum : { $sum : '$value' } } },
-          { $sort: { '_id.status': 1, '_id.month' : 1 } },
+          { $match: { date: { $gte: startDate } } },
+          { $project: { month: { $month: '$date' }, status: '$status', value: '$value' } },
+          { $group: { _id: { status: '$status', month: '$month' }, sum: { $sum: '$value' } } },
+          { $sort: { '_id.status': 1, '_id.month': 1 } },
         ])
         .toArray());
   }
@@ -101,10 +101,10 @@ class OrdersProfitRepository {
       .then(db => db
         .collection(this.collection)
         .aggregate([
-          { $match : { date : { $gte : startDate } } },
-          { $project : { month : { $month : '$date' }, value: '$value', status: 'All' } },
-          { $group : { _id : { status : '$status', month : '$month' }, sum : { $sum : '$value' } } },
-          { $sort: { '_id.month' : 1 } },
+          { $match: { date: { $gte: startDate } } },
+          { $project: { month: { $month: '$date' }, value: '$value', status: 'All' } },
+          { $group: { _id: { status: '$status', month: '$month' }, sum: { $sum: '$value' } } },
+          { $sort: { '_id.month': 1 } },
         ])
         .toArray());
   }
@@ -114,10 +114,10 @@ class OrdersProfitRepository {
       .then(db => db
         .collection(this.collection)
         .aggregate([
-          { $match : { date : { $gte : startDate } } },
-          { $project : { day : { $dayOfWeek : '$date' }, status: '$status', value: '$value' } },
-          { $group : { _id : { status : '$status', day : '$day' }, sum : { $sum : '$value' } } },
-          { $sort: { '_id.status': 1, '_id.day' : 1 } },
+          { $match: { date: { $gte: startDate } } },
+          { $project: { day: { $dayOfWeek: '$date' }, status: '$status', value: '$value' } },
+          { $group: { _id: { status: '$status', day: '$day' }, sum: { $sum: '$value' } } },
+          { $sort: { '_id.status': 1, '_id.day': 1 } },
         ])
         .toArray());
   }
@@ -127,10 +127,10 @@ class OrdersProfitRepository {
       .then(db => db
         .collection(this.collection)
         .aggregate([
-          { $match : { date : { $gte : startDate } } },
-          { $project : { day : { $dayOfWeek : '$date' }, value: '$value', status: 'All' } },
-          { $group : { _id : { status : '$status', day : '$day' }, sum : { $sum : '$value' } } },
-          { $sort: { '_id.day' : 1 } },
+          { $match: { date: { $gte: startDate } } },
+          { $project: { day: { $dayOfWeek: '$date' }, value: '$value', status: 'All' } },
+          { $group: { _id: { status: '$status', day: '$day' }, sum: { $sum: '$value' } } },
+          { $sort: { '_id.day': 1 } },
         ])
         .toArray());
   }

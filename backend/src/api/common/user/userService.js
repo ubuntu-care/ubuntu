@@ -38,7 +38,7 @@ class UserService {
         throw new Error('User already exists');
       }
       return this.repository.add(user);
-    })
+    });
   }
 
   addMany(users) {

@@ -7,7 +7,7 @@
 const express = require('express');
 const passport = require('passport');
 
-const cipher = require('../auth/cipherHelper');
+const cipher = require('./cipherHelper');
 const AuthService = require('./authService');
 
 const router = express.Router();

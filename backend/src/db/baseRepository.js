@@ -5,7 +5,7 @@
  */
 
 const { ObjectID } = require('mongodb');
-const getMongoDBClient = require('../db/mongodbClient');
+const getMongoDBClient = require('./mongodbClient');
 
 class BaseRepository {
   constructor(collectionName) {
@@ -74,7 +74,7 @@ class BaseRepository {
     return this.dbClient
       .then(db => {
         const data = db.collection(this.collection)
-          .find(filter.query || {}).sort({_id: -1});
+          .find(filter.query || {}).sort({ _id: -1 });
 
         if (filter.pageSize && filter.pageNumber) {
           data
@@ -82,11 +82,11 @@ class BaseRepository {
             .limit(parseInt(filter.pageSize, 10));
         }
 
-          if (filter.sortBy && filter.orderBy) {
-            const sortSettings = { [filter.sortBy]: filter.orderBy === 'ASC' ? 1 : -1 };
+        if (filter.sortBy && filter.orderBy) {
+          const sortSettings = { [filter.sortBy]: filter.orderBy === 'ASC' ? 1 : -1 };
 
-            data.collation({ locale: 'en' }).sort(sortSettings);
-          }
+          data.collation({ locale: 'en' }).sort(sortSettings);
+        }
 
         return data.toArray();
       });

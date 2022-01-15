@@ -20,29 +20,33 @@ const UserService = require('./api/common/user/userService');
 
 const userService = new UserService();
 
-passport.use(new LocalStrategy({
-  usernameField: 'email',
-  passwordField: 'password',
-},
-(email, password, cb) => {
-  userService
-    .findByEmail(email)
-    .then(user => {
-      const { passwordHash } = cipher.sha512(password, user.salt);
+passport.use(new LocalStrategy(
+  {
+    usernameField: 'email',
+    passwordField: 'password',
+  },
+  (email, password, cb) => {
+    userService
+      .findByEmail(email)
+      .then(user => {
+        const { passwordHash } = cipher.sha512(password, user.salt);
 
-      if (!user || user.passwordHash !== passwordHash) {
-        return cb(null, false, { message: 'Incorrect utils or password.' });
-      }
+        if (!user || user.passwordHash !== passwordHash) {
+          return cb(null, false, { message: 'Incorrect utils or password.' });
+        }
 
-      return cb(null, { id: user._id, role: user.role }, { message: 'Logged In Successfully' });
-    })
-    .catch(() => cb(null, false, { message: 'Incorrect utils or password.' }));
-}));
+        return cb(null, { id: user._id, role: user.role }, { message: 'Logged In Successfully' });
+      })
+      .catch(() => cb(null, false, { message: 'Incorrect utils or password.' }));
+  },
+));
 
-passport.use(new JWTStrategy({
-  jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-  secretOrKey: config.get('auth.jwt.accessTokenSecret'),
-},
-(jwtPayload, cb) => {
-  return cb(null, jwtPayload);
-}));
+passport.use(new JWTStrategy(
+  {
+    jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+    secretOrKey: config.get('auth.jwt.accessTokenSecret'),
+  },
+  (jwtPayload, cb) => {
+    return cb(null, jwtPayload);
+  },
+));

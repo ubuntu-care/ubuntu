@@ -38,8 +38,10 @@ class UserActivityService {
       }
       case 'week': {
         return this.listWeekly()
-          .then(data => this.mapUserActivities(data,
-            group => dateService.getShortWeekDay(group)));
+          .then(data => this.mapUserActivities(
+            data,
+            group => dateService.getShortWeekDay(group),
+          ));
       }
       default: {
         logger.info(`Incorrect filter parameter ${filter} of userActivitiesService.list`);

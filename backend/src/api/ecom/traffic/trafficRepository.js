@@ -17,10 +17,10 @@ class TrafficRepository extends BaseRepository {
       .then(db => db
         .collection(this.collection)
         .aggregate([
-          { $match : { date : { $gte : startDate } } },
-          { $project : { group : { $year : '$date' }, value: '$value' } },
-          { $group : { _id : { group : '$group' }, sum : { $sum : '$value' } } },
-          { $sort: { '_id.group' : 1 } },
+          { $match: { date: { $gte: startDate } } },
+          { $project: { group: { $year: '$date' }, value: '$value' } },
+          { $group: { _id: { group: '$group' }, sum: { $sum: '$value' } } },
+          { $sort: { '_id.group': 1 } },
         ])
         .toArray());
   }
@@ -30,10 +30,10 @@ class TrafficRepository extends BaseRepository {
       .then(db => db
         .collection(this.collection)
         .aggregate([
-          { $match : { date : { $gte : startDate, $lte: endDate } } },
-          { $project : { group : { $month : '$date' }, value: '$value' } },
-          { $group : { _id : { group : '$group' }, sum : { $sum : '$value' } } },
-          { $sort: { '_id.group' : 1 } },
+          { $match: { date: { $gte: startDate, $lte: endDate } } },
+          { $project: { group: { $month: '$date' }, value: '$value' } },
+          { $group: { _id: { group: '$group' }, sum: { $sum: '$value' } } },
+          { $sort: { '_id.group': 1 } },
         ])
         .toArray());
   }
@@ -43,10 +43,10 @@ class TrafficRepository extends BaseRepository {
       .then(db => db
         .collection(this.collection)
         .aggregate([
-          { $match : { date : { $gte : startDate } } },
-          { $project : { group : { $dayOfWeek : '$date' }, value: '$value' } },
-          { $group : { _id : { group : '$group' }, sum : { $sum : '$value' } } },
-          { $sort: { '_id.group' : 1 } },
+          { $match: { date: { $gte: startDate } } },
+          { $project: { group: { $dayOfWeek: '$date' }, value: '$value' } },
+          { $group: { _id: { group: '$group' }, sum: { $sum: '$value' } } },
+          { $sort: { '_id.group': 1 } },
         ])
         .toArray());
   }
